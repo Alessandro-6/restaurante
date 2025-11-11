@@ -24,7 +24,7 @@ const icon = computed(() => new URL(img, import.meta.url).href);
     <div class="mt-7">
       <p class="text-rose-400 text-sm font-medium">{{ category }}</p>
       <p class="font-semibold text-rose-900">{{ name }}</p>
-      <p class="text-red">${{ price }}</p>
+      <p class="text-red font-medium">${{ price }}</p>
     </div>
   </div>
 </template>
