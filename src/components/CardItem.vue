@@ -9,19 +9,28 @@ const { item: data } = defineProps<{ item: Item; quantity: number }>();
 
 const emit = defineEmits<{ increment: [item: Item]; decrement: [item: Item] }>();
 
-const icon = computed<string>((): string => new URL(item.img, import.meta.url).href);
+const icon = computed<string>((): string => new URL(item.img.desktop, import.meta.url).href);
+const iconMob = computed<string>((): string => new URL(item.img.mobile, import.meta.url).href);
 const item = reactive<Item>(data);
 const hovered = ref<boolean>(false);
 </script>
 
 <template>
-  <div>
+  <div class="max-w-full">
     <div class="relative">
-      <img class="object-contain rounded-lg" :src="icon" :alt="item.name" />
-      <Transition>
+      <img
+        class="object-contain border-[3px] transition w-full rounded-lg"
+        :srcset="`${iconMob} 300w, ${icon} 1000w`"
+        :alt="item.name"
+        :class="{
+          'border-red': hovered || item.selected,
+          'border-transparent': !hovered && !item.selected,
+        }"
+      />
+      <Transition name="btn" mode="in-out">
         <button
           @mouseleave="() => (hovered = false)"
-          v-if="hovered"
+          v-if="hovered || item.selected"
           type="button"
           class="flex rounded-full h-9 items-center justify-between w-36 text-sm border border-rose-500 absolute z-10 bg-red font-semibold -bottom-4 left-1/2 -translate-x-1/2 px-1.5 text-white"
         >
@@ -59,4 +68,19 @@ const hovered = ref<boolean>(false);
   </div>
 </template>
 
-<style lang="scss"></style>
+<style>
+.btn-enter-from {
+  opacity: 0.8;
+}
+.btn-enter-to {
+  opacity: 1;
+}
+.btn-enter-active,
+.btn-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.btn-leave-to {
+  opacity: 0.8;
+}
+</style>

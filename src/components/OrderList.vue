@@ -18,7 +18,7 @@ const total = computed<number>(() => {
 
 <template>
   <div
-    class="rounded-lg min-w-114 p-8 fixed top-1/2 -translate-y-1/2 left-1/2 h-130 bg-white z-20 -translate-x-1/2 flex flex-col"
+    class="rounded-lg w-full sm:w-md p-8 fixed top-1/2 -translate-y-1/2 left-1/2 h-2/3 sm:h-130 bg-white z-20 -translate-x-1/2 flex flex-col"
   >
     <Confirmed class="mb-5" />
     <h3 class="text-2xl capitalize mb-1 text-rose-900 font-bold">Order Confirmed!</h3>
@@ -28,7 +28,8 @@ const total = computed<number>(() => {
         v-for="(item, idx) in items"
         :key="idx"
         :category="item.category"
-        :img="item.img"
+        :img="item.img.desktop"
+        :img-mob="item.img.mobile"
         :name="item.name"
         :price="item.price"
         :quantity="item.quantity"
