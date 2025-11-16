@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import Inc from '@/assets/images/icon-increment-quantity.svg';
 import Dec from '@/assets/images/icon-decrement-quantity.svg';
 import AddToCart from '../assets/images/icon-add-to-cart.svg';
@@ -9,18 +9,16 @@ const { item: data } = defineProps<{ item: Item; quantity: number }>();
 
 const emit = defineEmits<{ increment: [item: Item]; decrement: [item: Item] }>();
 
-const icon = computed<string>((): string => new URL(item.img.desktop, import.meta.url).href);
-const iconMob = computed<string>((): string => new URL(item.img.mobile, import.meta.url).href);
 const item = reactive<Item>(data);
 const hovered = ref<boolean>(false);
 </script>
 
 <template>
-  <div class="max-w-full">
+  <div>
     <div class="relative">
       <img
-        class="object-contain border-[3px] transition w-full rounded-lg"
-        :srcset="`${iconMob} 300w, ${icon} 1000w`"
+        class="h-56 w-full object-cover border-[3px] transition rounded-lg"
+        :srcset="`${item.img.desktop} 300w, ${item.img.mobile} 1000w`"
         :alt="item.name"
         :class="{
           'border-red': hovered || item.selected,
