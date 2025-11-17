@@ -15,7 +15,7 @@ const total = computed<number>((): number =>
 
 <template>
   <div
-    class="bg-white rounded-lg py-6 px-5 box-border sm:min-w-100 sm:min-h-80 h-11/12 flex flex-col overflow-x-hidden relative backface-hidden transition-all duration-200 w-11/12"
+    class="bg-white rounded-lg py-6 px-5 box-border sm:w-2/5 sm:min-h-80 h-11/12 flex flex-col min-w-80 overflow-x-hidden relative backface-hidden transition-all duration-200 w-11/12"
   >
     <h1 class="text-red font-bold text-2xl mb-8 self-start">Your Cart({{ items.length }})</h1>
     <Transition name="list" mode="out-in">

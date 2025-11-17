@@ -75,11 +75,11 @@ function handleDropItem(item: Item) {
 
 <template>
   <div
-    class="flex flex-col items-center justify-items-center sm:flex-row sm:items-start sm:py-20 py-10 sm:px-28 sm:gap-6 w-screen relative"
+    class="flex flex-col items-center justify-items-center lg:flex-row sm:items-start sm:py-20 py-10 sm:px-20 sm:gap-6 w-screen relative"
   >
     <main class="w-11/12 sm:w-full">
-      <h1 class="text-3xl font-bold text-rose-900 mb-8">Desserts</h1>
-      <div class="grid meals sm:mb-0 mb-6 gap-5 relative">
+      <h1 class="md:text-3xl text-4xl font-bold text-rose-900 mb-8">Desserts</h1>
+      <div class="grid w-full meals sm:mb-0 mb-6 gap-5 relative">
         <Suspense>
           <template #default>
             <CardItem
@@ -120,10 +120,7 @@ function handleDropItem(item: Item) {
 
 <style scoped lang="scss">
 .meals {
-  grid-template-columns: repeat(3, 14.5rem);
-  @media only screen and (max-width: 575px) {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 }
 
 .modal-enter-active,
